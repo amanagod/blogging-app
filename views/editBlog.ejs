@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Blog</title>
+  <%- include("./partials/head") %>
+</head>
+<body>
+    <%- include("./partials/navbar") %>
+
+    <div class="container mt-3">
+        <form action="/blog/<%=blog._id%>?_method=PATCH" method="GET">
+            <div class="mb-3">
+              <h4 for="title" class="form-label"> title </label>
+              <input type="text" placeholder="<%= blog.title%>" name="newtitle" class="form-control mt-1" id="title" >
+            </div>  
+            <div class="mb-3 form-floating">
+                <h4>Body</h4>
+                <!-- <label for="body">Body</label> -->
+                <textarea name="newbody" class="form-control" id="body"><%= blog.body%></textarea>
+            </div>  
+            
+            <button type="submit" class="btn btn-dark">Submit</button>
+          </form>
+    </div>
+
+    <%- include("./partials/script") %>
+</body>
+</html>

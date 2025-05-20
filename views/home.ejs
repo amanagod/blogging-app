@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+  <%- include("./partials/head") %>
+</head>
+<body>
+    <%- include("./partials/navbar") %>
+  <div class="container mt-3">
+    <% blogs.forEach(blog=>{ %>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= blog.title %></h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary"><%= blog.updatedAt.toString().split(" ").slice(0,4).join(" ") %></h6>
+        <p class="card-text"><%=blog.body%></p>
+        <a href="/blog/edit/<%=blog._id%>" class=" btn btn-dark">edit</a>
+        <form action="/blog/<%=blog._id%>?_method=DELETE" method="POST">
+        <button type="submit" href="#" class="btn-dark btn">Deleat</button>
+        </form>
+      </div>
+    </div>
+ <% }); %>
+  </div>
+
+    <%- include("./partials/script") %>
+</body>
+</html>
