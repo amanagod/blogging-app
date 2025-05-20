@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 var methodOverride = require('method-override')
+require('dotenv').config();
 
 const Blog = require('./models/blog');
 
@@ -17,7 +18,7 @@ const { checkForAuthenticationCookie } = require('./middlewares/authentication')
 const app = express();
 const port = 3000;
 
-mongoose.connect('mongodb://mongo:zIDptFXmRbSDZjRuDvTFPwFvfIjBBUMZ@yamanote.proxy.rlwy.net:29508')
+mongoose.connect(process.env.url)
 .then(()=>{
     console.log("database connected succesfully");
 }).catch((err)=>{
