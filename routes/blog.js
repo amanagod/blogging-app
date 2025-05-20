@@ -40,7 +40,7 @@ router.get('/edit/:id',async (req,res)=>{
 
 });
 
-router.patch('/blog/:id',(req,res)=>{
+router.patch('/blog/:id', async (req,res)=>{
 // res.send("working");
 let {newbody,newtitle}= req.body;
 let blog = await Blog.findById(req.params.id);
@@ -50,7 +50,7 @@ blog.body=newbody;
 });
 
 
-router.delete('blog/:id',(req,res)=>{
+router.delete('blog/:id', async (req,res)=>{
 // console.log('working');
 let blog = await Blog.findByIdAndDelete(req.params.id);
 });
