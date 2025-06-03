@@ -1,6 +1,7 @@
 const {Router} = require("express");
 const router = Router();
 const Blog = require('../models/blog');
+const{ newBlog, editBlog, deleteBlog, getAddBlog,getUpdateBlog }= require("../controllers/blog")
 
 var express = require('express')
 var methodOverride = require('method-override')
@@ -10,49 +11,17 @@ app.use(methodOverride('_method'))
 
 
 
-router.get('/add-new',(req,res)=>{
-    return res.render('addBlog',{
-        user:req.user,
-    });
-})
+router.get('/add-new',getAddBlog);
 
 
-router.post('/', async (req,res)=>{
-    const {body,title} = req.body;
-    
- const blog = await Blog.create({
-        body,
-        title,
-        createdBy: req.user._id,
-    });
-
-    return res.redirect(`/blog/${blog._id}`);
-});
+router.post('/', newBlog);
 
 
-router.get('/edit/:id',async (req,res)=>{
+router.get('/edit/:id',getUpdateBlog);
 
-    let blog = await Blog.findById(req.params.id);
-    return res.render('editBlog',{
-        user:req.user,
-        blog,
-    }); 
-
-});
-
-router.patch('/blog/:id', async (req,res)=>{
-// res.send("working");
-let {newbody,newtitle}= req.body;
-let blog = await Blog.findById(req.params.id);
-blog.title=newtitle;
-blog.body=newbody;
-
-});
+router.patch('/edit/:id',editBlog);
 
 
-router.delete('blog/:id', async (req,res)=>{
-// console.log('working');
-let blog = await Blog.findByIdAndDelete(req.params.id);
-});
+router.delete('/:id', deleteBlog);
 
 module.exports=router;

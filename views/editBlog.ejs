@@ -11,7 +11,7 @@
     <%- include("./partials/navbar") %>
 
     <div class="container mt-3">
-        <form action="/blog/<%=blog._id%>?_method=PATCH" method="GET">
+        <form action="/blog/edit/<%=blog._id%>?_method=PATCH" method="POST">
             <div class="mb-3">
               <h4 for="title" class="form-label"> title </label>
               <input type="text" placeholder="<%= blog.title%>" name="newtitle" class="form-control mt-1" id="title" >
